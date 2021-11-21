@@ -12,13 +12,14 @@
 <?php
 session_start();
 
-if(isset($_POST["killsession"])){
-    $_SESSION = null; 
-    session_destroy(); 
+if (isset($_POST["killsession"])) {
+    $_SESSION = null;
+    session_destroy();
 }
 
 if (isset($_SESSION["user"])) {
     echo "Bievenido a la tienda, " . $_SESSION['user'];
+
 } else {
     header("Location: http://localhost/pac/index.php");
 }
@@ -28,8 +29,16 @@ if (isset($_SESSION["user"])) {
 
 <form method="POST" action="Acceso.php">
     <input hidden name="killsession" />
-    <input type="submit" value="Cerrar sesión" />
+    <input type="submit" value="Volver" />
 </form>
+
+<a href="./Articulos.php">Artículos</a>
+
+<?php
+if ($_SESSION["id"] == "10") {
+    echo "<a href='./Usuarios.php'>Usuarios</a>";
+}
+?>
 </body>
 
 </html>

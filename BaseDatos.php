@@ -32,9 +32,65 @@ function authenticateUSer($username, $email)
 
 }
 
-function killSession()
+function getArticles()
 {
-    $_SESSION = null;
-    session_destroy();
-    
+    $DB = createConnection("pac3_daw");
+
+    $sql = "SELECT * FROM product";
+    $result = mysqli_query($DB, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        return $result;
+        // Si no, enviamos un mensaje de error.
+    } else {
+        echo "No hay nada en la lista de artículos .";
+    }
+
+    mysqli_close($DB);
+}
+
+function getUsers()
+{
+    $DB = createConnection("pac3_daw");
+
+    $sql = "SELECT * FROM user";
+    $result = mysqli_query($DB, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        return $result;
+
+    } else {
+        echo "No hay nada en la lista de usuarios .";
+    }
+
+    mysqli_close($DB);
+}
+
+function getCategories()
+{
+    $DB = createConnection("pac3_daw");
+
+    $sql = "SELECT DISTINCT Name FROM category";
+    $result = mysqli_query($DB, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        return $result;
+    } else {
+        echo "No hay nada en la lista de categorías.";
+    }
+    mysqli_close($DB);
+}
+
+function countArticles(){
+    $DB = createConnection("pac3_daw");
+
+    $sql = "SELECT COUNT(ProductID) FROM product";
+    $result = mysqli_query($DB, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        return $result;
+    } else {
+        echo "No hay nada en la lista de categorías.";
+    }
+    mysqli_close($DB);
 }
