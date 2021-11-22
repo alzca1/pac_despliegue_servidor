@@ -49,6 +49,22 @@ function getArticles()
     mysqli_close($DB);
 }
 
+function getArticle($id){
+    $DB = createConnection("pac3_daw");
+
+    $sql = "SELECT ProductID, Name, Cost, Price, CategoryID FROM product WHERE ProductID=". $id; 
+    $result = mysqli_query($DB, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        return $result;
+        // Si no, enviamos un mensaje de error.
+    } else {
+        echo "No existe ningún artículo con esa ID.";
+    }
+
+    mysqli_close($DB);
+}
+
 function getUsers()
 {
     $DB = createConnection("pac3_daw");

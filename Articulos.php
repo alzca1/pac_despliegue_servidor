@@ -50,8 +50,18 @@ if (isset($_SESSION["user"])) {
                         <td>" . $row["Price"] . "</td>\n";
 
             if ($_SESSION["enabled"] == 1) {
-                echo "<td><a href='./formArticulos'>Editar</a> <a href='#'>Borrar</a>\n
-                </tr>";
+                echo "<td>
+                        <form  action='./formArticulos.php' method='GET' id='edit'>
+                            <input hidden name='id' value='" . $row["ProductID"] . "' />
+                            <a><input type='submit' name='edit'  value='Editar' form='edit'/></a>
+                        </form>
+                        <form id ='delete' action='./formArticulos.php' method='GET' id ='delete'>
+                            <input hidden name='id' value='" . $row["ProductID"] . "' />
+                            <a><input type='submit' name='delete' value='borrar' form='delete' /></a>
+                        </form>";
+
+                // echo "<td><a href='./formArticulos'>Editar</a> <a href='#'>Borrar</a>\n
+                // </tr>";
             } else {
                 echo "</tr>";
             }
